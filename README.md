@@ -1,6 +1,10 @@
-[![codecov](https://codecov.io/gh/nikhiljohn10/envlock/branch/main/graph/badge.svg)](https://codecov.io/gh/nikhiljohn10/envlock)
-
 # ENVLock
+
+[![codecov](https://codecov.io/gh/nikhiljohn10/envlock/branch/main/graph/badge.svg)](https://codecov.io/gh/nikhiljohn10/envlock)
+[![PyPI version](https://img.shields.io/pypi/v/envlock.svg)](https://pypi.org/project/envlock/)
+[![Python versions](https://img.shields.io/pypi/pyversions/envlock.svg)](https://pypi.org/project/envlock/)
+[![License](https://img.shields.io/github/license/nikhiljohn10/envlock.svg)](https://github.com/nikhiljohn10/envlock/blob/main/LICENSE)
+
 
 A secure CLI tool for encrypting, decrypting, shredding, and rotating secrets files (e.g., `.env`) using strong symmetric encryption (Fernet/AES).
 
@@ -74,6 +78,62 @@ python main.py renew --old-key <oldkey>
 - Never print or log the key in CI/CD logs
 - Use secure deletion (`--shred`) for sensitive files
 - Rotate keys regularly and after any suspected compromise
+
+## Shell Completion
+
+`envlock` supports shell completion for bash, zsh, and fish. To enable it, run:
+
+```sh
+eval "$(_ENVLOCK_COMPLETE=source_bash envlock)"  # for bash
+eval "$(_ENVLOCK_COMPLETE=source_zsh envlock)"   # for zsh
+eval "$(_ENVLOCK_COMPLETE=source_fish envlock)"  # for fish
+```
+
+Add the appropriate line to your shell profile to enable completion permanently.
+
+## Alternative Installation Methods
+
+### Homebrew (macOS/Linux)
+You can create a Homebrew formula for `envlock` or use pipx:
+
+```sh
+pipx install envlock
+```
+
+### Windows
+Install with pip or pipx:
+
+```sh
+pip install envlock
+# or
+pipx install envlock
+```
+
+## Troubleshooting
+
+- **Upload to PyPI/TestPyPI fails with 400 Bad Request:**
+  - Ensure your version is unique and not already uploaded.
+  - Check your `pyproject.toml` for required fields.
+  - Delete the `dist/` directory before building.
+- **Key errors:**
+  - Make sure your key is 32 bytes (64 hex chars or 32 bytes base64).
+  - If using ENVLOCK_ENCRYPTION_KEY, ensure it is set in your environment.
+- **Permission errors:**
+  - Run the CLI with appropriate permissions for file access.
+
+## FAQ
+
+**Q: Can I use envlock for files other than .env?**
+A: Yes, you can lock/unlock any file by specifying the `-f` option.
+
+**Q: Is the encrypted file safe to store in version control?**
+A: Yes, as long as you keep the key secret.
+
+**Q: How do I rotate my encryption key?**
+A: Use the `renew` command with `--old-key` and optionally `--new-key`.
+
+**Q: How do I securely delete the original file?**
+A: Use the `--shred` option with the `lock` command.
 
 ## License
 MIT
