@@ -1,0 +1,17 @@
+site_name: ENVLock Documentation
+site_url: https://nikhiljohn10.github.io/envlock/
+docs_dir: docs
+repo_url: https://github.com/nikhiljohn10/envlock
+repo_name: nikhiljohn10/envlock
+theme:
+  name: readthedocs
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - FAQ: faq.md
+  - Security: security.md

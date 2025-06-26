@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Test and Build 📦
+    name: Test and Build
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -37,7 +37,7 @@ jobs:
       - name: Store the distribution packages
         uses: actions/upload-artifact@v4
         with:
-          name: python-package-distributions
+          name: python-package
           path: dist/
 
 
@@ -57,7 +57,63 @@ jobs:
     - name: Download all the dists
       uses: actions/download-artifact@v4
       with:
-        name: python-package-distributions
+        name: python-package
         path: dist/
     - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        skip-existing: true
+
+  publish-to-testpypi:
+    name: Publish Python 🐍 distribution 📦 to Test PyPI
+    if: startsWith(github.ref, 'refs/tags/') != true
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/envlock
+    permissions:
+      id-token: write
+
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution 📦 to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        skip-existing: true
+
+  build-windows:
+    name: Build for Windows 📦
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    needs:
+    - build
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller click cryptography
+      - name: Build EXE with PyInstaller
+        run: pyinstaller --onefile --name envlock main.py
+      - name: Upload EXE as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: envlock-windows
+          path: dist/envlock.exe
+      - name: Upload to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/envlock.exe

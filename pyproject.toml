@@ -1,11 +1,11 @@
 [project]
 name = "envlock"
-version = "0.1.0"
+version = "1.0.0"
 description = "A secure CLI tool for encrypting, decrypting, shredding, and rotating secrets files using strong symmetric encryption."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
-    { name = "Nikhil John", email = "nikhiljohn1010@gmail.com"}
+    { name = "Nikhil John", email = "me@nikz.in"}
 ]
 license = "MIT"
 license-files = ["LICENSE*"]

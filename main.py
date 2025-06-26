@@ -25,6 +25,7 @@ import click
 import base64
 import secrets
 import logging
+import webbrowser
 from cryptography.fernet import Fernet
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -280,6 +281,18 @@ def renew(file_, old_key, new_key, hide_key):
         if isinstance(v, bytearray):
             v[:] = secrets.token_bytes(len(v))
     del decrypted, encrypted, old_binary_key, old_fernet_key, new_binary_key, new_fernet_key
+
+@cli.command()
+def feedback():
+    """Open the feedback/feature request page in your browser or print the link."""
+    url = "https://github.com/nikhiljohn10/envlock/issues/new/choose"
+    try:
+        webbrowser.open(url)
+        click.echo("Opened the feedback/feature request page in your browser:")
+        click.echo(url)
+    except Exception:
+        click.echo("Please submit feedback or feature requests at:")
+        click.echo(url)
 
 if __name__ == '__main__':
     cli()

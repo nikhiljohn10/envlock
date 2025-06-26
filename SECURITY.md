@@ -4,7 +4,7 @@
 
 If you discover a security vulnerability in `envlock`, please report it responsibly:
 
-- Email: nikhiljohn1010@gmail.com
+- Email: me@nikz.in
 - Do **not** open a public GitHub issue for security problems.
 - We will respond as quickly as possible and coordinate a fix and disclosure.
 

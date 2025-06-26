@@ -19,4 +19,4 @@ Examples of unacceptable behavior:
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers at nikhiljohn1010@gmail.com. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers at me@nikz.in. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.

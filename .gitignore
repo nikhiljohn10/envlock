@@ -80,3 +80,6 @@ venv.bak/
 
 # Windows
 Thumbs.db
+
+# MKDocs
+site/

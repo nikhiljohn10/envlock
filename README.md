@@ -1,8 +1,11 @@
 # ENVLock
 
-[![codecov](https://codecov.io/gh/nikhiljohn10/envlock/branch/main/graph/badge.svg)](https://codecov.io/gh/nikhiljohn10/envlock)
 [![PyPI version](https://img.shields.io/pypi/v/envlock.svg)](https://pypi.org/project/envlock/)
 [![Python versions](https://img.shields.io/pypi/pyversions/envlock.svg)](https://pypi.org/project/envlock/)
+[![codecov](https://codecov.io/gh/nikhiljohn10/envlock/branch/main/graph/badge.svg)](https://codecov.io/gh/nikhiljohn10/envlock)
+[![Build Status](https://github.com/nikhiljohn10/envlock/actions/workflows/publish.yml/badge.svg)](https://github.com/nikhiljohn10/envlock/actions/workflows/publish.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/nikhiljohn10/envlock/badge)](https://www.codefactor.io/repository/github/nikhiljohn10/envlock)
+[![Snyk Vulnerabilities](https://snyk.io/test/github/nikhiljohn10/envlock/badge.svg)](https://snyk.io/test)
 [![License](https://img.shields.io/github/license/nikhiljohn10/envlock.svg)](https://github.com/nikhiljohn10/envlock/blob/main/LICENSE)
 
 
@@ -28,7 +31,7 @@ pip install cryptography click
 ### Lock a file (encrypt)
 
 ```sh
-python main.py lock [-f FILE] [-k KEY] [-h] [-s]
+envlock lock [-f FILE] [-k KEY] [-h] [-s]
 ```
 - `-f, --file`   : File to lock (default: `.env`)
 - `-k, --key`    : Encryption key (hex or base64). If omitted, uses `ENVLOCK_ENCRYPTION_KEY` or generates a new key.
@@ -37,26 +40,26 @@ python main.py lock [-f FILE] [-k KEY] [-h] [-s]
 
 **Example:**
 ```sh
-python main.py lock -f .env -s
+envlock lock -f .env -s
 ```
 
 ### Unlock a file (decrypt)
 
 ```sh
-python main.py unlock [-f FILE] -k KEY
+envlock unlock [-f FILE] -k KEY
 ```
 - `-f, --file`   : File to unlock (default: `.env.locked`)
 - `-k, --key`    : Encryption key (hex or base64, required)
 
 **Example:**
 ```sh
-python main.py unlock -f .env.locked -k <key>
+envlock unlock -f .env.locked -k <key>
 ```
 
 ### Renew (rotate) encryption key
 
 ```sh
-python main.py renew [-f FILE] --old-key OLDKEY [--new-key NEWKEY] [-h]
+envlock renew [-f FILE] --old-key OLDKEY [--new-key NEWKEY] [-h]
 ```
 - `-f, --file`   : File to renew (default: `.env.locked`)
 - `--old-key`    : Current encryption key (hex or base64, required)
@@ -65,7 +68,7 @@ python main.py renew [-f FILE] --old-key OLDKEY [--new-key NEWKEY] [-h]
 
 **Example:**
 ```sh
-python main.py renew --old-key <oldkey>
+envlock renew --old-key <oldkey>
 ```
 
 ## Key Management
@@ -93,7 +96,7 @@ Add the appropriate line to your shell profile to enable completion permanently.
 
 ## Alternative Installation Methods
 
-### Homebrew (macOS/Linux)
+### macOS/Linux
 You can create a Homebrew formula for `envlock` or use pipx:
 
 ```sh
