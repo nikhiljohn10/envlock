@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/nikhiljohn10/envlock/branch/main/graph/badge.svg)](https://codecov.io/gh/nikhiljohn10/envlock)
+
 # ENVLock
 
 A secure CLI tool for encrypting, decrypting, shredding, and rotating secrets files (e.g., `.env`) using strong symmetric encryption (Fernet/AES).
